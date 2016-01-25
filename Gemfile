@@ -1,7 +1,8 @@
 source 'https://rubygems.org'
 ruby '2.3.0'
 
-gem 'highline'
+gem 'highline', path: '/Users/matrinox/Developer/highline'
+gem 'plist'
 
 gem 'git', path: '/Users/matrinox/Developer/ruby-git'
 
