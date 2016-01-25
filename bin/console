@@ -11,7 +11,7 @@ require "git-helper"
 # Pry.start
 
 require "irb"
-IRB.start
+# IRB.start
 
 require 'menus/main'
 

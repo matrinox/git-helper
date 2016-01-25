@@ -8,12 +8,15 @@ module GitHelper
       cli.choose do |menu|
         menu.header = "Settings"
         menu.prompt = "? "
-        menu.choice(:main_branch, text: "Set the <%= color('main branch', BOLD) %> that you base all your topic/feature branches off of") do
+        current_git_root_directory = `pwd`.sub("\n", '/.git-helper-pref.plist')
+        # Refactor into user pref manager
+        pref = Plist.parse_xml(current_git_root_directory)
+        current_main_branch = pref['main']
+        menu.choice(:main_branch, text: "Set the <%= color('main branch', BOLD) %> that you base all your topic/feature branches off of (currently #{current_main_branch})") do
+          # Move to actions
           answer = cli.ask('What is the main branch (e.g. master, release)?')
-          hash = {main: answer}
-          hash.to_plist
-          cli.say(`pwd`)
-          # Plist::Emit.save_plist(hash, )
+          pref = { main: answer }
+          Plist::Emit.save_plist(pref, current_git_root_directory)
           cli.say("We've set it to #{answer}")
           open
         end
