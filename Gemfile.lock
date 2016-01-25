@@ -1,4 +1,12 @@
 PATH
+  remote: .
+  specs:
+    git-helper (0.1.0)
+      git (~> 1.2.9.1)
+      highline
+      plist (~> 3.1.0)
+
+PATH
   remote: /Users/matrinox/Developer/highline
   specs:
     highline (2.0.0.pre.develop.5)
@@ -17,6 +25,7 @@ GEM
     coderay (1.1.0)
     coolline (0.5.0)
       unicode_utils (~> 1.4)
+    diff-lcs (1.2.5)
     method_source (0.8.2)
     parser (2.3.0.2)
       ast (~> 2.2)
@@ -44,6 +53,20 @@ GEM
     pry-toys (0.0.2)
       pry
     rainbow (2.1.0)
+    rake (10.5.0)
+    rspec (3.4.0)
+      rspec-core (~> 3.4.0)
+      rspec-expectations (~> 3.4.0)
+      rspec-mocks (~> 3.4.0)
+    rspec-core (3.4.1)
+      rspec-support (~> 3.4.0)
+    rspec-expectations (3.4.0)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.4.0)
+    rspec-mocks (3.4.1)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.4.0)
+    rspec-support (3.4.1)
     rubocop (0.36.0)
       parser (>= 2.3.0.0, < 3.0)
       powerpack (~> 0.1)
@@ -59,8 +82,10 @@ PLATFORMS
 
 DEPENDENCIES
   awesome_print
+  bundler (~> 1.11)
   byebug (~> 8.2.1)
   git!
+  git-helper!
   highline!
   plist
   pry
@@ -71,6 +96,8 @@ DEPENDENCIES
   pry-rails (~> 0.3.4)
   pry-state (~> 0.1.7)
   pry-toys (~> 0.0.2)
+  rake (~> 10.0)
+  rspec (~> 3.0)
   rubocop
 
 BUNDLED WITH
