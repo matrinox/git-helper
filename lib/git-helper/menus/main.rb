@@ -1,6 +1,7 @@
 require 'menu'
 require 'settings_menu'
 require 'branch_checkout_menu'
+require 'sign_offs'
 
 module GitHelper
   class MainMenu < Menu
@@ -31,6 +32,13 @@ module GitHelper
         end
         menu.choice('settings', text: "Edit <%= color('settings', BOLD) %>", color: 'MAGENTA') do
           SettingsMenu.open
+        end
+        menu.choice('exit', text: "<%= color('Exit', BOLD) %> this program") do
+          random_sign_offs = SIGN_OFFS
+          country = random_sign_offs.keys.sample
+          random_sign_off = random_sign_offs[country].sample
+          cli.say("\n\nAs they say in #{country}")
+          cli.say(random_sign_off)
         end
       end
     end

@@ -25,6 +25,7 @@ def load_folder(lib_path, folder_name)
 end
 
 load_folder(lib_path, 'actions')
+load_folder(lib_path, 'data')
 load_folder(lib_path, 'menus')
 
 require 'bundler_setup'
