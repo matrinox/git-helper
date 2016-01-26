@@ -1,5 +1,6 @@
 require 'menu'
 require 'settings_menu'
+require 'branch_checkout_menu'
 
 module GitHelper
   class MainMenu < Menu
@@ -8,6 +9,9 @@ module GitHelper
       cli.choose do |menu|
         menu.header = "Welcome to Git Helper.\nYour poor skills in Git have led you to this: using a ruby script and punching in numbers to do the work for you. You could've picked up a book on git or learned how to write bash scripts but noooo!\nSigh.\nFirst world problems…\n\nHere are your options"
         menu.prompt = "What do you want to do? "
+        menu.choice(:go_to, text: "<%= color('Go to', BOLD) %> branch based on variety of factors", color: "BLUE") do
+          BranchCheckoutMenu.open
+        end
         menu.choice(:feature, text: "Create a <%= color('feature', BOLD) %> branch", color: 'BLUE')
         menu.choice(:rebase, text: "<%= color('Rebase', BOLD) %> this with master (and keep any working changes)", color: "'choice'") do
 
