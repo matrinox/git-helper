@@ -27,6 +27,5 @@ end
 load_folder(lib_path, 'actions')
 load_folder(lib_path, 'menus')
 
-puts $LOAD_PATH
 require 'bundler_setup'
 require 'setup'

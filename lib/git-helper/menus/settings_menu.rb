@@ -1,5 +1,5 @@
-puts $LOAD_PATH
 require 'menu'
+require 'main'
 
 module GitHelper
   class SettingsMenu < Menu

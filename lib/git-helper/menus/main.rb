@@ -16,12 +16,12 @@ module GitHelper
           cli.say('Stashing your changes…')
           cli.say("I noticed that you have multiple (#{nubmer_of_duplicates} commits with the same name. Please tell me what branch")
         end
-        menu.choice(:copy_over, text: "<%= color('Copy over', BOLD) %> changes over from another branch to this branch", color: 'BLUE')
-        menu.choice(:notify_tracker, text: "<%= color('Notify Tracker', BOLD) %> that this ticket is complete", color: "'choice'") do
+        menu.choice(:copy_over, text: "<%= color('Copy over', BOLD) %> changes over from another branch to this branch", color: 'YELLOW')
+        menu.choice(:notify_tracker, text: "<%= color('Notify', BOLD) %> Pivotal <%= color('Tracker', BOLD) %> that this ticket is complete", color: 'RED') do
           cli.ask("I have determined that the ticket number is #{ticket_number}. Is this correct?")
           cli.ask('I could not determine the ticket number based on your branch. Please enter it here')
         end
-        menu.choice(:create_pr, text: "<%= color('Create', BOLD) %> a <%= color('PR', BOLD) %> (w/ tracker notification options)", color: 'RED') do
+        menu.choice(:create_pr, text: "<%= color('Create', BOLD) %> a <%= color('PR', BOLD) %> (w/ Pivotal Tracker notification options)", color: 'RED') do
           cli.ask("I noticed there is no [Finished/Fixes ##{ticket_number}] commit. Would you like me to create one for you?")
           cli.ask('')
         end
@@ -31,14 +31,4 @@ module GitHelper
       end
     end
   end
-end
-
-def create_feature_option
-  cli.say('Stashing your changes…')
-  cli.say('Rebasing…')
-  cli.say('Applying your stashed changes…')
-  cli.say('Done!')
-end
-
-def enter_settings
 end
