@@ -1,7 +1,7 @@
-require 'menu'
-require 'settings_menu'
-require 'branch_checkout_menu'
-require 'sign_offs'
+require 'git-helper/menus/menu'
+require 'git-helper/menus/settings_menu'
+require 'git-helper/menus/branch_checkout_menu'
+require 'git-helper/data/sign_offs'
 
 module GitHelper
   class MainMenu < Menu

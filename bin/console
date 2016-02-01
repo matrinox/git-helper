@@ -13,6 +13,6 @@ require "git-helper"
 require "irb"
 # IRB.start
 
-require 'menus/main'
+require 'git-helper/menus/main'
 
 GitHelper::MainMenu.open

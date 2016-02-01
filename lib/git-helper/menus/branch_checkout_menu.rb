@@ -1,5 +1,5 @@
-require 'menu'
-require 'main'
+require 'git-helper/menus/menu'
+require 'git-helper/menus/main'
 
 module GitHelper
   class BranchCheckoutMenu < Menu
