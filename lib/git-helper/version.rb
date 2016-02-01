@@ -1,5 +1,3 @@
-module Git
-  module Helper
-    VERSION = "0.1.0"
-  end
+module GitHelper
+  VERSION = "0.1.0"
 end

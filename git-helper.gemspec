@@ -4,14 +4,14 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'git-helper/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = "git-helper"
-  spec.version       = Git::Helper::VERSION
+  spec.name          = "GitHelper"
+  spec.version       = GitHelper::VERSION
   spec.authors       = ["matrinox"]
-  spec.email         = ["geofflee21@me.com"]
+  spec.email         = ["geofflee25@gmail.com"]
 
-  spec.summary       = %q{TODO: Write a short summary, because Rubygems requires one.}
-  spec.description   = %q{TODO: Write a longer description or delete this line.}
-  spec.homepage      = "TODO: Put your gem's website or public repo URL here."
+  spec.summary       = "Simplifies git using common git workflows"
+  spec.description   = "Provides git shortcuts to common git workflows.\nIt also allows customization via per-repo persistent settings or on-the-fly. The main standout feature is repair, which aims to fix issues in your branch such as a failed rebase resulting in duplicate commits with different SHA's.\nOther features include creating branches from Pivotal Tracker ticket numbers, finishing branches & notifying Tracker, advanced branch searching, and powerful branch/commit copying"
+  spec.homepage      = ""
   spec.license       = "MIT"
 
   # Prevent pushing this gem to RubyGems.org by setting 'allowed_push_host', or

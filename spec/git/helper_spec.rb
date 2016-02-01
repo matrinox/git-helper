@@ -1,8 +1,8 @@
 require 'spec_helper'
 
-describe Git::Helper do
+describe GitHelper do
   it 'has a version number' do
-    expect(Git::Helper::VERSION).not_to be nil
+    expect(GitHelper::VERSION).not_to be nil
   end
 
   it 'does something useful' do
