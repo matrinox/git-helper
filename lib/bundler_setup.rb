@@ -7,3 +7,9 @@ ENV['BUNDLE_GEMFILE'] ||= File.join(root_path, 'Gemfile')
 require 'bundler/setup' if File.exists?(ENV['BUNDLE_GEMFILE'])
 
 Bundler.require(ENVIRONMENT)
+
+# Load dependencies
+
+require 'highline'
+require 'plist'
+require 'git'
