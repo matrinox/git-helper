@@ -17,7 +17,7 @@ module GitHelper
   end
 
   def self.storage_dir
-    '~/Library/git-helper'
+    File.expand_path('~/Library/git-helper')
   end
 
   # @return [Hash] cached read-only settings
