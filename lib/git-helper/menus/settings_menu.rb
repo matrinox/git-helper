@@ -10,13 +10,11 @@ module GitHelper
         menu.prompt = "? "
         current_git_root_directory = `pwd`.sub("\n", '/.git-helper-pref.plist')
         # Refactor into user pref manager
-        pref = Plist.parse_xml(current_git_root_directory)
-        current_main_branch = pref['main']
+        current_main_branch = GitHelper.settings_for(:main)
         menu.choice('main_branch', text: "Set the <%= color('main branch', BOLD) %> that you base all your topic/feature branches off of (currently #{current_main_branch})") do
           # Move to actions
           answer = cli.ask('What is the main branch (e.g. master, release)?')
-          pref = { main: answer }
-          Plist::Emit.save_plist(pref, current_git_root_directory)
+          GitHelper.update_settings(:main, answer)
           cli.say("We've set it to #{answer}")
           open
         end
