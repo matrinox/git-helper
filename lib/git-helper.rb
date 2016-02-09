@@ -9,7 +9,7 @@ require 'git-helper/menus/main'
 
 module GitHelper
   def self.start
-    GitHelper::MainMenu.open
+    GitHelper::Menus::MainMenu.open
   end
 
   def self.gem_dir

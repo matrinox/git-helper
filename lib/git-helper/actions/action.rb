@@ -5,9 +5,11 @@
 # Stay as low-level as possible, pure ruby, so that it is portable
 
 module GitHelper
-  class Action
-    def self.run
-      fail 'Must implement .run to perform actions'
+  module Actions
+    class Action
+      def self.run
+        fail 'Must implement .run to perform actions'
+      end
     end
   end
 end

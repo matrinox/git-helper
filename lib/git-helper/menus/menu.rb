@@ -1,7 +1,9 @@
 module GitHelper
-  class Menu
-    def self.open
-      fail 'Please implement!'
+  module Menus
+    class Menu
+      def self.open
+        fail 'Please implement!'
+      end
     end
   end
 end
