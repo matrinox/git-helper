@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    GitHelper (0.1.0)
+    git-helper (0.1.0)
       git (~> 1.2.9.1)
       highline
       plist (~> 3.1.0)
@@ -81,11 +81,11 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  GitHelper!
   awesome_print
   bundler (~> 1.11)
   byebug (~> 8.2.1)
   git!
+  git-helper!
   highline!
   plist
   pry

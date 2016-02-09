@@ -1,3 +1,5 @@
+require 'highline'
+
 cli = HighLine.new
 # require 'highline/import'
 

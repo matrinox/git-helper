@@ -11,8 +11,4 @@ require 'git-helper'
 # Pry.start
 
 require 'irb'
-# IRB.start
-
-require 'git-helper/menus/main'
-
-GitHelper::MainMenu.open
+IRB.start
