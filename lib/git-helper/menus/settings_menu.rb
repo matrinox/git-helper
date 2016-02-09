@@ -1,5 +1,6 @@
 require 'git-helper/menus/menu'
 require 'git-helper/menus/main'
+require 'git-helper/actions/settings/main_branch_action'
 
 module GitHelper
   class SettingsMenu < Menu
@@ -13,9 +14,7 @@ module GitHelper
         current_main_branch = GitHelper.settings_for(:main)
         menu.choice('main_branch', text: "Set the <%= color('main branch', BOLD) %> that you base all your topic/feature branches off of (currently #{current_main_branch})") do
           # Move to actions
-          answer = cli.ask('What is the main branch (e.g. master, release)?')
-          GitHelper.update_settings(:main, answer)
-          cli.say("We've set it to #{answer}")
+          MainBranchAction.run
           open
         end
         menu.choice('return', text: "<%= color('Return', BOLD) %> back to the main menu") do
