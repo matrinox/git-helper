@@ -4,7 +4,7 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'git-helper/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = "GitHelper"
+  spec.name          = "git_helper"
   spec.version       = GitHelper::VERSION
   spec.authors       = ["matrinox"]
   spec.email         = ["geofflee25@gmail.com"]
