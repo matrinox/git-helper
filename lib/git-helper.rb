@@ -12,8 +12,12 @@ module GitHelper
     GitHelper::MainMenu.open
   end
 
-  def self.storage_path
+  def self.gem_dir
     File.dirname(File.dirname(__FILE__))
+  end
+
+  def self.storage_dir
+    '~/Library/git-helper'
   end
 
   # @return [Hash] cached read-only settings
@@ -27,7 +31,7 @@ module GitHelper
   end
 
   def self.project_backup_pref_path
-    pref_backup_directory = File.join(GitHelper.storage_path, 'settings')
+    pref_backup_directory = File.join(GitHelper.storage_dir, 'settings')
     # Dasherize the backslashes to avoid needless subdirectories
     project_directory = `pwd`.sub("\n", '')
     FileUtils.mkdir_p(pref_backup_directory)
