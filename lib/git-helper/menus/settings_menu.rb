@@ -11,8 +11,6 @@ module GitHelper
       cli.choose do |menu|
         menu.header = "Settings"
         menu.prompt = "? "
-        current_git_root_directory = `pwd`.sub("\n", '/.git-helper-pref.plist')
-        # Refactor into user pref manager
         current_main_branch = GitHelper.settings_for(:main)
         menu.choice('main_branch', text: "Set the <%= color('main branch', BOLD) %> that you base all your topic/feature branches off of (currently #{current_main_branch})") do
           # Move to actions
