@@ -5,7 +5,7 @@ module GitHelper
     'Romania' => ['la revedere', 'rămas bun', 'pa'],
     'Portugal' => ['adeus', 'até logo', 'até amanhã'],
     'France' => ['bagette', 'adieu', 'au revoir', 'au revoir shoshanna', 'à bientôt', 'à demain'],
-    'England' => ['some british saying', 'tea', 'crumpits'],
+    'England' => ['some british saying', 'drink tea', 'eat crumpits'],
     'Germany' => ['auf Wiedersehen', 'bis dann', 'bis bald', 'bis später', 'tschüss', 'tschau', 'ade'],
     'Poland' => ['do zobaczenia', 'żegnaj'],
     'Dutch' => ['tot ziens', 'dag', 'doei'],
