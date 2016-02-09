@@ -4,6 +4,8 @@ require 'git-helper/actions/settings/main_branch_action'
 
 module GitHelper
   class SettingsMenu < Menu
+    include Settings
+
     def self.open
       cli = HighLine.new
       cli.choose do |menu|
