@@ -1,0 +1,1012 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>
+  Module: GitHelper
+
+    &mdash; Documentation by YARD 0.8.7.6
+
+</title>
+
+  <link rel="stylesheet" href="css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="css/common.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  hasFrames = window.top.frames.main ? true : false;
+  relpath = '';
+  framesUrl = "frames.html#!GitHelper.html";
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div id="header">
+      <div id="menu">
+
+    <a href="_index.html">Index (G)</a> &raquo;
+
+
+    <span class="title">GitHelper</span>
+
+
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
+</div>
+
+      <div id="search">
+
+    <a class="full_list_link" id="class_list_link"
+        href="class_list.html">
+      Class List
+    </a>
+
+    <a class="full_list_link" id="method_list_link"
+        href="method_list.html">
+      Method List
+    </a>
+
+    <a class="full_list_link" id="file_list_link"
+        href="file_list.html">
+      File List
+    </a>
+
+</div>
+      <div class="clear"></div>
+    </div>
+
+    <iframe id="search_frame"></iframe>
+
+    <div id="content"><h1>Module: GitHelper
+
+
+
+</h1>
+
+<dl class="box">
+
+
+
+
+
+
+
+
+    <dt class="r1 last">Defined in:</dt>
+    <dd class="r1 last">lib/git-helper/actions/action.rb<span class="defines">,<br />
+  lib/git-helper.rb,<br /> lib/git-helper/version.rb,<br /> lib/git-helper/menus/main.rb,<br /> lib/git-helper/menus/menu.rb,<br /> lib/git-helper/data/sign_offs.rb,<br /> lib/git-helper/menus/settings_menu.rb,<br /> lib/git-helper/menus/branch_checkout_menu.rb,<br /> lib/git-helper/actions/main/repair_action.rb,<br /> lib/git-helper/actions/settings/main_branch_action.rb</span>
+</dd>
+
+</dl>
+<div class="clear"></div>
+
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
+
+<p>Action is a very simple interface, exactly like a ruby service except
+it&#39;s .run  instead of .call Like ruby services, .run can take any
+arguments or none at all</p>
+
+<p>Try not to require any dependency or call any code that is in gems Stay as
+low-level as possible, pure ruby, so that it is portable</p>
+
+
+  </div>
+</div>
+<div class="tags">
+
+
+</div><h2>Defined Under Namespace</h2>
+<p class="children">
+
+
+      <strong class="modules">Modules:</strong> <span class='object_link'><a href="GitHelper/Actions.html" title="GitHelper::Actions (module)">Actions</a></span>, <span class='object_link'><a href="GitHelper/Menus.html" title="GitHelper::Menus (module)">Menus</a></span>
+
+
+
+
+</p>
+
+  <h2>Constant Summary</h2>
+
+    <dl class="constants">
+
+        <dt id="VERSION-constant" class="">VERSION =
+
+        </dt>
+        <dd><pre class="code"><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>0.1.0</span><span class='tstring_end'>&quot;</span></span></pre></dd>
+
+        <dt id="SIGN_OFFS-constant" class="">SIGN_OFFS =
+
+        </dt>
+        <dd><pre class="code"><span class='lbrace'>{</span>
+  <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Italy</span><span class='tstring_end'>&#39;</span></span> <span class='op'>=&gt;</span> <span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>ciao</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>arrivederci</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>buona sera</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>addio</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>buona notte</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='comma'>,</span>
+  <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Spain</span><span class='tstring_end'>&#39;</span></span> <span class='op'>=&gt;</span> <span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>hasta la vista</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>despedida</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>adios</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>te veo despues</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='comma'>,</span>
+  <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Romania</span><span class='tstring_end'>&#39;</span></span> <span class='op'>=&gt;</span> <span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>la revedere</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>rămas bun</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>pa</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='comma'>,</span>
+  <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Portugal</span><span class='tstring_end'>&#39;</span></span> <span class='op'>=&gt;</span> <span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>adeus</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>até logo</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>até amanhã</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='comma'>,</span>
+  <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>France</span><span class='tstring_end'>&#39;</span></span> <span class='op'>=&gt;</span> <span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>bagette</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>adieu</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>au revoir</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>au revoir shoshanna</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>à bientôt</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>à demain</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='comma'>,</span>
+  <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>England</span><span class='tstring_end'>&#39;</span></span> <span class='op'>=&gt;</span> <span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>some british saying</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>drink tea</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>eat crumpits</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='comma'>,</span>
+  <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Germany</span><span class='tstring_end'>&#39;</span></span> <span class='op'>=&gt;</span> <span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>auf Wiedersehen</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>bis dann</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>bis bald</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>bis später</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>tschüss</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>tschau</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>ade</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='comma'>,</span>
+  <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Poland</span><span class='tstring_end'>&#39;</span></span> <span class='op'>=&gt;</span> <span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>do zobaczenia</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>żegnaj</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='comma'>,</span>
+  <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Dutch</span><span class='tstring_end'>&#39;</span></span> <span class='op'>=&gt;</span> <span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>tot ziens</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>dag</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>doei</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='comma'>,</span>
+  <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Sweden</span><span class='tstring_end'>&#39;</span></span> <span class='op'>=&gt;</span> <span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>hejdå</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>adjö</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>adjöss</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>vi ses</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>ha det så bra</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='comma'>,</span>
+  <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Denmark</span><span class='tstring_end'>&#39;</span></span> <span class='op'>=&gt;</span> <span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>farvel</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>vi ses</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>hej hej</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='comma'>,</span>
+  <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Norway</span><span class='tstring_end'>&#39;</span></span> <span class='op'>=&gt;</span> <span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>farvel</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>ha det bra</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>hade</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>vi snakkes</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='comma'>,</span>
+  <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>the USA</span><span class='tstring_end'>&#39;</span></span> <span class='op'>=&gt;</span> <span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>bro</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>yes, you better be sorry</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>USA! USA!</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>America, fuck yeah!</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='comma'>,</span>
+  <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>english</span><span class='tstring_end'>&#39;</span></span> <span class='op'>=&gt;</span> <span class='qwords_beg'>%w(</span><span class='tstring_content'>bye</span><span class='words_sep'> </span><span class='tstring_content'>goodbye</span><span class='words_sep'> </span><span class='tstring_content'>later</span><span class='words_sep'> </span><span class='tstring_content'>cya</span><span class='words_sep'>)</span><span class='comma'>,</span>
+  <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Hawaii</span><span class='tstring_end'>&#39;</span></span> <span class='op'>=&gt;</span> <span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>aloha</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='comma'>,</span>
+  <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>China</span><span class='tstring_end'>&#39;</span></span> <span class='op'>=&gt;</span> <span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>再见</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>拜拜</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>辞行</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='comma'>,</span>
+  <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Japan</span><span class='tstring_end'>&#39;</span></span> <span class='op'>=&gt;</span> <span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>sayōnara</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>さようなら</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>じゃあね</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>じゃあまたね</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>おやすみなさい</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='comma'>,</span>
+  <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>India</span><span class='tstring_end'>&#39;</span></span> <span class='op'>=&gt;</span> <span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>ਅਲਵਿਦਾ</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>ਰੱਬ ਰਾਖਾ</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>ਗੁਰੂ ਰਾਖਾ</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>namaste</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>fir milenge</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>alvida</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='comma'>,</span>
+  <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Isreal</span><span class='tstring_end'>&#39;</span></span> <span class='op'>=&gt;</span> <span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>להתראות</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>שָׁלוֹם</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>שָׁלוֹם עֲלֵיכֶם</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='comma'>,</span>
+  <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Korea</span><span class='tstring_end'>&#39;</span></span> <span class='op'>=&gt;</span> <span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>안녕</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>안녕히 가세요</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>안녕히 계세요</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='comma'>,</span>
+  <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Russia</span><span class='tstring_end'>&#39;</span></span> <span class='op'>=&gt;</span> <span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>До свидания</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Пока</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>До Встречи</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Удачи</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='comma'>,</span>
+  <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>South Africa</span><span class='tstring_end'>&#39;</span></span> <span class='op'>=&gt;</span> <span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>totsiens</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>tot weersiens</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>tot wederom</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>wederdom</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>koebaai</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>ghoebaai</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>arriewarie</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>vaarwel</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='comma'>,</span>
+  <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Czech Republic</span><span class='tstring_end'>&#39;</span></span> <span class='op'>=&gt;</span> <span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>sbohem</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>na shledanou</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>ahoj</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='comma'>,</span>
+  <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Canada</span><span class='tstring_end'>&#39;</span></span> <span class='op'>=&gt;</span> <span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>aboot</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>a boot</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>I\&#39;m sorry</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>thank you</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span>
+<span class='rbrace'>}</span></pre></dd>
+
+    </dl>
+
+
+
+
+
+
+
+
+
+    <h2>
+      Class Method Summary
+      <small>(<a href="#" class="summary_toggle">collapse</a>)</small>
+    </h2>
+
+    <ul class="summary">
+
+        <li class="public ">
+  <span class="summary_signature">
+
+      <a href="#gem_dir-class_method" title="gem_dir (class method)">+ (Object) <strong>gem_dir</strong> </a>
+
+
+
+  </span>
+
+
+
+
+
+
+
+
+
+    <span class="summary_desc"><div class='inline'></div></span>
+
+</li>
+
+
+        <li class="public ">
+  <span class="summary_signature">
+
+      <a href="#load_settings-class_method" title="load_settings (class method)">+ (Hash) <strong>load_settings</strong> </a>
+
+
+
+  </span>
+
+
+
+
+
+
+
+
+
+    <span class="summary_desc"><div class='inline'>
+<p>Read-only settingsD.</p>
+</div></span>
+
+</li>
+
+
+        <li class="public ">
+  <span class="summary_signature">
+
+      <a href="#project_backup_pref_path-class_method" title="project_backup_pref_path (class method)">+ (Object) <strong>project_backup_pref_path</strong> </a>
+
+
+
+  </span>
+
+
+
+
+
+
+
+
+
+    <span class="summary_desc"><div class='inline'></div></span>
+
+</li>
+
+
+        <li class="public ">
+  <span class="summary_signature">
+
+      <a href="#project_pref_path-class_method" title="project_pref_path (class method)">+ (Object) <strong>project_pref_path</strong> </a>
+
+
+
+  </span>
+
+
+
+
+
+
+
+
+
+    <span class="summary_desc"><div class='inline'></div></span>
+
+</li>
+
+
+        <li class="public ">
+  <span class="summary_signature">
+
+      <a href="#save_settings-class_method" title="save_settings (class method)">+ (True/False) <strong>save_settings</strong>(settings = self.settings) </a>
+
+
+
+  </span>
+
+
+
+
+
+
+
+
+
+    <span class="summary_desc"><div class='inline'>
+<p>Saves settings to disk One of them goes to the current root directory that
+called GitHelper The other goes to git-helpers gem directory as backup in
+case you lose this file.</p>
+</div></span>
+
+</li>
+
+
+        <li class="public ">
+  <span class="summary_signature">
+
+      <a href="#settings-class_method" title="settings (class method)">+ (Hash) <strong>settings</strong> </a>
+
+
+
+  </span>
+
+
+
+
+
+
+
+
+
+    <span class="summary_desc"><div class='inline'>
+<p>Cached read-only settings.</p>
+</div></span>
+
+</li>
+
+
+        <li class="public ">
+  <span class="summary_signature">
+
+      <a href="#settings_for-class_method" title="settings_for (class method)">+ (Object) <strong>settings_for</strong>(key) </a>
+
+
+
+  </span>
+
+
+
+
+
+
+
+
+
+    <span class="summary_desc"><div class='inline'>
+<p>Value.</p>
+</div></span>
+
+</li>
+
+
+        <li class="public ">
+  <span class="summary_signature">
+
+      <a href="#start-class_method" title="start (class method)">+ (Object) <strong>start</strong> </a>
+
+
+
+  </span>
+
+
+
+
+
+
+
+
+
+    <span class="summary_desc"><div class='inline'></div></span>
+
+</li>
+
+
+        <li class="public ">
+  <span class="summary_signature">
+
+      <a href="#storage_dir-class_method" title="storage_dir (class method)">+ (Object) <strong>storage_dir</strong> </a>
+
+
+
+  </span>
+
+
+
+
+
+
+
+
+
+    <span class="summary_desc"><div class='inline'></div></span>
+
+</li>
+
+
+        <li class="public ">
+  <span class="summary_signature">
+
+      <a href="#update_settings-class_method" title="update_settings (class method)">+ (Hash) <strong>update_settings</strong>(key, value) </a>
+
+
+
+  </span>
+
+
+
+
+
+
+
+
+
+    <span class="summary_desc"><div class='inline'>
+<p>Updates GitHelper.settings with new key-value pair and immediately saves to
+disk.</p>
+</div></span>
+
+</li>
+
+
+    </ul>
+
+
+
+
+  <div id="class_method_details" class="method_details_list">
+    <h2>Class Method Details</h2>
+
+
+      <div class="method_details first">
+  <h3 class="signature first" id="gem_dir-class_method">
+
+    + (<tt>Object</tt>) <strong>gem_dir</strong>
+
+
+
+
+
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+15
+16
+17</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/git-helper.rb', line 15</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_gem_dir'>gem_dir</span>
+  <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_dirname'>dirname</span><span class='lparen'>(</span><span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_dirname'>dirname</span><span class='lparen'>(</span><span class='kw'>__FILE__</span><span class='rparen'>)</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+
+      <div class="method_details ">
+  <h3 class="signature " id="load_settings-class_method">
+
+    + (<tt>Hash</tt>) <strong>load_settings</strong>
+
+
+
+
+
+</h3><div class="docstring">
+  <div class="discussion">
+
+<p>Returns read-only settingsD</p>
+
+
+  </div>
+</div>
+<div class="tags">
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+
+    <li>
+
+
+        <span class='type'>(<tt>Hash</tt>)</span>
+
+
+
+        &mdash;
+        <div class='inline'>
+<p>read-only settingsD</p>
+</div>
+
+    </li>
+
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/git-helper.rb', line 43</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_load_settings'>load_settings</span>
+  <span class='comment'># Load backup pref for project
+</span>  <span class='id identifier rubyid_project_backup_pref_path'>project_backup_pref_path</span> <span class='op'>=</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_project_backup_pref_path'>project_backup_pref_path</span>
+  <span class='kw'>if</span> <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_exists?'>exists?</span><span class='lparen'>(</span><span class='id identifier rubyid_project_backup_pref_path'>project_backup_pref_path</span><span class='rparen'>)</span>
+    <span class='ivar'>@backup_pref</span> <span class='op'>=</span> <span class='const'>Plist</span><span class='period'>.</span><span class='id identifier rubyid_parse_xml'>parse_xml</span><span class='lparen'>(</span><span class='id identifier rubyid_project_backup_pref_path'>project_backup_pref_path</span><span class='rparen'>)</span>
+  <span class='kw'>else</span>
+    <span class='ivar'>@backup_pref</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span>
+    <span class='const'>Plist</span><span class='op'>::</span><span class='const'>Emit</span><span class='period'>.</span><span class='id identifier rubyid_save_plist'>save_plist</span><span class='lparen'>(</span><span class='ivar'>@backup_pref</span><span class='comma'>,</span> <span class='id identifier rubyid_project_backup_pref_path'>project_backup_pref_path</span><span class='rparen'>)</span>
+  <span class='kw'>end</span>
+  <span class='comment'># Load project pef
+</span>  <span class='id identifier rubyid_project_pref_path'>project_pref_path</span> <span class='op'>=</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_project_pref_path'>project_pref_path</span>
+  <span class='kw'>if</span> <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_exists?'>exists?</span><span class='lparen'>(</span><span class='id identifier rubyid_project_pref_path'>project_pref_path</span><span class='rparen'>)</span>
+    <span class='ivar'>@project_pref</span> <span class='op'>=</span> <span class='const'>Plist</span><span class='period'>.</span><span class='id identifier rubyid_parse_xml'>parse_xml</span><span class='lparen'>(</span><span class='id identifier rubyid_project_pref_path'>project_pref_path</span><span class='rparen'>)</span>
+  <span class='kw'>else</span>
+    <span class='ivar'>@project_pref</span> <span class='op'>=</span> <span class='ivar'>@backup_pref</span>
+    <span class='const'>Plist</span><span class='op'>::</span><span class='const'>Emit</span><span class='period'>.</span><span class='id identifier rubyid_save_plist'>save_plist</span><span class='lparen'>(</span><span class='ivar'>@project_pref</span><span class='comma'>,</span> <span class='id identifier rubyid_project_pref_path'>project_pref_path</span><span class='rparen'>)</span>
+  <span class='kw'>end</span>
+  <span class='ivar'>@project_pref</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+
+      <div class="method_details ">
+  <h3 class="signature " id="project_backup_pref_path-class_method">
+
+    + (<tt>Object</tt>) <strong>project_backup_pref_path</strong>
+
+
+
+
+
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+33
+34
+35
+36
+37
+38
+39
+40</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/git-helper.rb', line 33</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_project_backup_pref_path'>project_backup_pref_path</span>
+  <span class='id identifier rubyid_pref_backup_directory'>pref_backup_directory</span> <span class='op'>=</span> <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='const'>GitHelper</span><span class='period'>.</span><span class='id identifier rubyid_storage_dir'>storage_dir</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>settings</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
+  <span class='comment'># Dasherize the backslashes to avoid needless subdirectories
+</span>  <span class='id identifier rubyid_project_directory'>project_directory</span> <span class='op'>=</span> <span class='backtick'>`</span><span class='tstring_content'>pwd</span><span class='tstring_end'>`</span></span><span class='period'>.</span><span class='id identifier rubyid_sub'>sub</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>\n</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
+  <span class='const'>FileUtils</span><span class='period'>.</span><span class='id identifier rubyid_mkdir_p'>mkdir_p</span><span class='lparen'>(</span><span class='id identifier rubyid_pref_backup_directory'>pref_backup_directory</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_project_backup_pref_file_name'>project_backup_pref_file_name</span> <span class='op'>=</span> <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='id identifier rubyid_pref_backup_directory'>pref_backup_directory</span><span class='comma'>,</span> <span class='id identifier rubyid_project_directory'>project_directory</span><span class='period'>.</span><span class='id identifier rubyid_gsub'>gsub</span><span class='lparen'>(</span><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>\/</span><span class='regexp_end'>/</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>-</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_project_backup_pref_file_name'>project_backup_pref_file_name</span> <span class='op'>+</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>.plist</span><span class='tstring_end'>&#39;</span></span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+
+      <div class="method_details ">
+  <h3 class="signature " id="project_pref_path-class_method">
+
+    + (<tt>Object</tt>) <strong>project_pref_path</strong>
+
+
+
+
+
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+28
+29
+30
+31</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/git-helper.rb', line 28</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_project_pref_path'>project_pref_path</span>
+  <span class='id identifier rubyid_project_directory'>project_directory</span> <span class='op'>=</span> <span class='backtick'>`</span><span class='tstring_content'>pwd</span><span class='tstring_end'>`</span></span><span class='period'>.</span><span class='id identifier rubyid_sub'>sub</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>\n</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
+  <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='id identifier rubyid_project_directory'>project_directory</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>.git-helper-pref.plist</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+
+      <div class="method_details ">
+  <h3 class="signature " id="save_settings-class_method">
+
+    + (<tt>True/False</tt>) <strong>save_settings</strong>(settings = self.settings)
+
+
+
+
+
+</h3><div class="docstring">
+  <div class="discussion">
+
+<p>Saves settings to disk One of them goes to the current root directory that
+called GitHelper The other goes to git-helpers gem directory as backup in
+case you lose this file</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+
+    <li>
+
+        <span class='name'>settings</span>
+
+
+        <span class='type'>(<tt>Hash</tt>, <tt>optional</tt>)</span>
+
+
+        <em class="default">(defaults to: <tt>self.settings</tt>)</em>
+
+
+        &mdash;
+        <div class='inline'>
+<p>complete settings to save to disk Defaults to GitHelper.settings</p>
+</div>
+
+    </li>
+
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+
+    <li>
+
+
+        <span class='type'>(<tt>True/False</tt>)</span>
+
+
+
+        &mdash;
+        <div class='inline'>
+<p>true if successful, false if not</p>
+</div>
+
+    </li>
+
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+92
+93
+94
+95
+96</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/git-helper.rb', line 92</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_save_settings'>save_settings</span><span class='lparen'>(</span><span class='id identifier rubyid_settings'>settings</span> <span class='op'>=</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_settings'>settings</span><span class='rparen'>)</span>
+  <span class='const'>Plist</span><span class='op'>::</span><span class='const'>Emit</span><span class='period'>.</span><span class='id identifier rubyid_save_plist'>save_plist</span><span class='lparen'>(</span><span class='id identifier rubyid_settings'>settings</span><span class='comma'>,</span> <span class='id identifier rubyid_project_pref_path'>project_pref_path</span><span class='rparen'>)</span>
+  <span class='const'>Plist</span><span class='op'>::</span><span class='const'>Emit</span><span class='period'>.</span><span class='id identifier rubyid_save_plist'>save_plist</span><span class='lparen'>(</span><span class='id identifier rubyid_settings'>settings</span><span class='comma'>,</span> <span class='id identifier rubyid_project_backup_pref_path'>project_backup_pref_path</span><span class='rparen'>)</span>
+  <span class='kw'>true</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+
+      <div class="method_details ">
+  <h3 class="signature " id="settings-class_method">
+
+    + (<tt>Hash</tt>) <strong>settings</strong>
+
+
+
+
+
+</h3><div class="docstring">
+  <div class="discussion">
+
+<p>Returns cached read-only settings</p>
+
+
+  </div>
+</div>
+<div class="tags">
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+
+    <li>
+
+
+        <span class='type'>(<tt>Hash</tt>)</span>
+
+
+
+        &mdash;
+        <div class='inline'>
+<p>cached read-only settings</p>
+</div>
+
+    </li>
+
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+24
+25
+26</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/git-helper.rb', line 24</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_settings'>settings</span>
+  <span class='ivar'>@settings</span> <span class='op'>||=</span> <span class='id identifier rubyid_load_settings'>load_settings</span><span class='period'>.</span><span class='id identifier rubyid_clone'>clone</span><span class='period'>.</span><span class='id identifier rubyid_freeze'>freeze</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+
+      <div class="method_details ">
+  <h3 class="signature " id="settings_for-class_method">
+
+    + (<tt>Object</tt>) <strong>settings_for</strong>(key)
+
+
+
+
+
+</h3><div class="docstring">
+  <div class="discussion">
+
+<p>Returns value</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+
+    <li>
+
+        <span class='name'>key</span>
+
+
+        <span class='type'>(<tt>String</tt>, <tt>Symbol</tt>)</span>
+
+
+
+        &mdash;
+        <div class='inline'>
+<p>automatically converted to string</p>
+</div>
+
+    </li>
+
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+
+    <li>
+
+
+        <span class='type'>(<tt>Object</tt>)</span>
+
+
+
+        &mdash;
+        <div class='inline'>
+<p>value</p>
+</div>
+
+    </li>
+
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+65
+66
+67</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/git-helper.rb', line 65</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_settings_for'>settings_for</span><span class='lparen'>(</span><span class='id identifier rubyid_key'>key</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_settings'>settings</span><span class='lbracket'>[</span><span class='id identifier rubyid_key'>key</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span><span class='rbracket'>]</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+
+      <div class="method_details ">
+  <h3 class="signature " id="start-class_method">
+
+    + (<tt>Object</tt>) <strong>start</strong>
+
+
+
+
+
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+11
+12
+13</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/git-helper.rb', line 11</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_start'>start</span>
+  <span class='const'>GitHelper</span><span class='op'>::</span><span class='const'>Menus</span><span class='op'>::</span><span class='const'>MainMenu</span><span class='period'>.</span><span class='id identifier rubyid_open'>open</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+
+      <div class="method_details ">
+  <h3 class="signature " id="storage_dir-class_method">
+
+    + (<tt>Object</tt>) <strong>storage_dir</strong>
+
+
+
+
+
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+19
+20
+21</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/git-helper.rb', line 19</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_storage_dir'>storage_dir</span>
+  <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_expand_path'>expand_path</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>~/Library/git-helper</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+
+      <div class="method_details ">
+  <h3 class="signature " id="update_settings-class_method">
+
+    + (<tt>Hash</tt>) <strong>update_settings</strong>(key, value)
+
+
+
+
+
+</h3><div class="docstring">
+  <div class="discussion">
+
+<p>Updates GitHelper.settings with new key-value pair and immediately saves to
+disk</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+
+    <li>
+
+        <span class='name'>key</span>
+
+
+        <span class='type'>(<tt>String</tt>, <tt>Symbol</tt>)</span>
+
+
+
+        &mdash;
+        <div class='inline'>
+<p>automatically converted to string</p>
+</div>
+
+    </li>
+
+    <li>
+
+        <span class='name'>value</span>
+
+
+        <span class='type'>(<tt>Object</tt>)</span>
+
+
+
+    </li>
+
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+
+    <li>
+
+
+        <span class='type'>(<tt>Hash</tt>)</span>
+
+
+
+        &mdash;
+        <div class='inline'>
+<p>the update settings</p>
+</div>
+
+    </li>
+
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/git-helper.rb', line 73</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_update_settings'>update_settings</span><span class='lparen'>(</span><span class='id identifier rubyid_key'>key</span><span class='comma'>,</span> <span class='id identifier rubyid_value'>value</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_load_settings'>load_settings</span>
+  <span class='id identifier rubyid_key'>key</span> <span class='op'>=</span> <span class='id identifier rubyid_key'>key</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span>
+  <span class='comment'># Update ivars
+</span>  <span class='ivar'>@project_pref</span><span class='lbracket'>[</span><span class='id identifier rubyid_key'>key</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_value'>value</span>
+  <span class='ivar'>@backup_pref</span><span class='lbracket'>[</span><span class='id identifier rubyid_key'>key</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_value'>value</span>
+  <span class='comment'># Update settings ivar
+</span>  <span class='ivar'>@settings</span> <span class='op'>=</span> <span class='ivar'>@project_pref</span><span class='period'>.</span><span class='id identifier rubyid_clone'>clone</span><span class='period'>.</span><span class='id identifier rubyid_freeze'>freeze</span>
+  <span class='comment'># Update files
+</span>  <span class='id identifier rubyid_save_settings'>save_settings</span><span class='lparen'>(</span><span class='ivar'>@settings</span><span class='rparen'>)</span>
+  <span class='ivar'>@settings</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+
+  </div>
+
+</div>
+
+    <div id="footer">
+  Generated on Fri Oct 14 17:00:17 2016 by
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.8.7.6 (ruby-2.3.0).
+</div>
+
+  </body>
+</html>

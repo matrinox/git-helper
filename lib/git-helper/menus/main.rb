@@ -2,10 +2,13 @@ require 'git-helper/menus/menu'
 require 'git-helper/menus/settings_menu'
 require 'git-helper/menus/branch_checkout_menu'
 require 'git-helper/data/sign_offs'
+require 'git-helper/actions/main/repair_action'
 
 module GitHelper
   module Menus
     class MainMenu < Menu
+      include Actions::Main
+
       def self.open
         cli = HighLine.new
         cli.choose do |menu|
@@ -14,7 +17,15 @@ module GitHelper
           menu.choice('go to', text: "<%= color('Go to', BOLD) %> branch based on variety of factors", color: "BLUE") do
             BranchCheckoutMenu.open
           end
-          menu.choice('feature', text: "Create a <%= color('feature', BOLD) %> branch", color: 'BLUE')
+          menu.choice('feature', text: "Create a <%= color('feature', BOLD) %> branch", color: 'BLUE') do
+            ticket_number = cli.ask('Pivotal Ticket Number?')
+            description = cli.ask('Description (optional)')
+            unless description.empty?
+              description = ' '
+            end
+            branch = "feature/#{ticket_number.sub(/#/, '')}#{description.gsub(/\s/, '-')}"
+            cli.say("Branch name is #{branch}")
+          end
           menu.choice('rebase', text: "<%= color('Rebase', BOLD) %> this with master (and keep any working changes)", color: "'choice'") do
 
           end
@@ -30,6 +41,7 @@ module GitHelper
           menu.choice('create_pr', text: "<%= color('Create', BOLD) %> a <%= color('PR', BOLD) %> (w/ Pivotal Tracker notification options)", color: 'RED') do
             cli.ask("I noticed there is no [Finished/Fixes ##{ticket_number}] commit. Would you like me to create one for you?")
             cli.ask('')
+            RepairAction.run
           end
           menu.choice('settings', text: "Edit <%= color('settings', BOLD) %>", color: 'MAGENTA') do
             SettingsMenu.open
