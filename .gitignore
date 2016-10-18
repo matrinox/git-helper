@@ -8,3 +8,18 @@
 /spec/reports/
 /tmp/
 *.plist
+
+## Documentation cache and generated files:
+/.yardoc/
+/_yardoc/
+/doc/
+/rdoc/
+
+## Environment normalization:
+/.bundle/
+/vendor/bundle
+/lib/bundler/man/
+/Gemfile.lock
+.ruby-version
+.ruby-gemset
+.rvmrc
