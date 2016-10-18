@@ -7,6 +7,8 @@ gem 'plist'
 
 gem 'git', path: '/Users/matrinox/Developer/ruby-git'
 
+gem 'rubocop'
+
 group :debug do
   # shows queries and call site in our app
   gem 'rubocop'
